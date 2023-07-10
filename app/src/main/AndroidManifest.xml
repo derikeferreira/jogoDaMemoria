@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/memoria_jogo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/memoria_jogo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GameMemory"
+        tools:targetApi="31">
+        <activity
+            android:name=".Jogo5x4_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Jogo4x4_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Jogo4x3_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Bomba_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Jogo3x4_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Jogo3x2_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Jogo2x2MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
