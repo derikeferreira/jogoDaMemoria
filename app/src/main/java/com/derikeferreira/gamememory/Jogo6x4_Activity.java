@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Jogo5x4_Activity extends AppCompatActivity {
+public class Jogo6x4_Activity extends AppCompatActivity {
 
 
     //static final - nunca vai mudar o valor
@@ -29,6 +29,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
     private ImageView imagem_L3xC1, imagem_L3xC2, imagem_L3xC3, imagem_L3xC4;
     private ImageView imagem_L4xC1, imagem_L4xC2, imagem_L4xC3, imagem_L4xC4;
     private ImageView imagem_L5xC1, imagem_L5xC2, imagem_L5xC3, imagem_L5xC4;
+    private ImageView imagem_L6xC1, imagem_L6xC2, imagem_L6xC3, imagem_L6xC4;
     private Button btnParar;
     private Button btnRecomecar;
     private Timer tempo;
@@ -43,28 +44,30 @@ public class Jogo5x4_Activity extends AppCompatActivity {
             abriuDuasImagens7 = 0,
             abriuDuasImagens8 = 0,
             abriuDuasImagens9 = 0,
-            abriuDuasImagens10 = 0;
+            abriuDuasImagens10 = 0,
+            abriuDuasImagens11 = 0,
+            abriuDuasImagens12 = 0;
 
 
-    private Integer[] arrayPosicoesImg = {101,102, 103, 104, 105, 106 ,107 ,108, 109, 110 , 201, 202, 203, 204, 205, 206,207 ,208, 209, 210};
+    private Integer[] arrayPosicoesImg = {101,102, 103, 104, 105, 106 ,107 ,108, 109, 110, 111, 112 , 201, 202, 203, 204, 205, 206,207 ,208, 209, 210, 211, 212};
     //numero das imagens
     private int imagemJogo1, imagemJogo2, imagemJogo3,imagemJogo4,
             imagemJogo5,imagemJogo6,imagemJogo7,imagemJogo8,
             imagemJogo9,imagemJogo10,imagemJogo11,imagemJogo12,
             imagemJogo13,imagemJogo14,imagemJogo15,imagemJogo16,
-            imagemJogo17,imagemJogo18,imagemJogo19,imagemJogo20;
+            imagemJogo17,imagemJogo18,imagemJogo19,imagemJogo20,
+            imagemJogo21,imagemJogo22,imagemJogo23,imagemJogo24;
     private int imagemEscolha1, imagemEscolha2;
     private int cliqueImagem1, cliqueImagem2;
     private int imagemNumero = 1;
-    private int pontos = 21;
+    private int pontos = 30;
     private String exibirSom;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jogo5x4);
-
+        setContentView(R.layout.activity_jogo6x4);
         configuracoesIniciais();
 
         imagem_L1xC1.setOnClickListener(new View.OnClickListener() {
@@ -375,6 +378,66 @@ public class Jogo5x4_Activity extends AppCompatActivity {
             }
         });
 
+        imagem_L6xC1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Executa som ao clicar na imagem
+                executarSom();
+
+                // v - contém o número da Tag que foi passada
+                //String - Cast que é uma conversão
+                int posicao = Integer.parseInt((String)v.getTag());
+                trocarImagem(imagem_L6xC1, posicao);
+
+            }
+        });
+
+        imagem_L6xC2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Executa som ao clicar na imagem
+                executarSom();
+
+                // v - contém o número da Tag que foi passada
+                //String - Cast que é uma conversão
+                int posicao = Integer.parseInt((String)v.getTag());
+                trocarImagem(imagem_L6xC2, posicao);
+
+            }
+        });
+
+        imagem_L6xC3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Executa som ao clicar na imagem
+                executarSom();
+
+                // v - contém o número da Tag que foi passada
+                //String - Cast que é uma conversão
+                int posicao = Integer.parseInt((String)v.getTag());
+                trocarImagem(imagem_L6xC3, posicao);
+
+            }
+        });
+
+        imagem_L6xC4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Executa som ao clicar na imagem
+                executarSom();
+
+                // v - contém o número da Tag que foi passada
+                //String - Cast que é uma conversão
+                int posicao = Integer.parseInt((String)v.getTag());
+                trocarImagem(imagem_L6xC4, posicao);
+
+            }
+        });
+
 
         btnParar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -414,6 +477,11 @@ public class Jogo5x4_Activity extends AppCompatActivity {
                             imagem_L5xC3.setEnabled(true);
                             imagem_L5xC4.setEnabled(true);
 
+                            imagem_L6xC1.setEnabled(true);
+                            imagem_L6xC2.setEnabled(true);
+                            imagem_L6xC3.setEnabled(true);
+                            imagem_L6xC4.setEnabled(true);
+
                         }
 
                     }
@@ -452,6 +520,11 @@ public class Jogo5x4_Activity extends AppCompatActivity {
                             imagem_L5xC2.setEnabled(false);
                             imagem_L5xC3.setEnabled(false);
                             imagem_L5xC4.setEnabled(false);
+
+                            imagem_L6xC1.setEnabled(false);
+                            imagem_L6xC2.setEnabled(false);
+                            imagem_L6xC3.setEnabled(false);
+                            imagem_L6xC4.setEnabled(false);
 
                         }
 
@@ -574,34 +647,39 @@ public class Jogo5x4_Activity extends AppCompatActivity {
         btnRecomecar = findViewById(R.id.btnRecomecar);
 
 
-        imagem_L1xC1 = findViewById(R.id.imgMatriz_5x4_L1xC1);
-        imagem_L1xC2 = findViewById(R.id.imgMatriz_5x4_L1xC2);
-        imagem_L1xC3 = findViewById(R.id.imgMatriz_5x4_L1xC3);
-        imagem_L1xC4 = findViewById(R.id.imgMatriz_5x4_L1xC4);
+        imagem_L1xC1 = findViewById(R.id.imgMatriz_6x4_L1xC1);
+        imagem_L1xC2 = findViewById(R.id.imgMatriz_6x4_L1xC2);
+        imagem_L1xC3 = findViewById(R.id.imgMatriz_6x4_L1xC3);
+        imagem_L1xC4 = findViewById(R.id.imgMatriz_6x4_L1xC4);
 
-        imagem_L2xC1 = findViewById(R.id.imgMatriz_5x4_L2xC1);
-        imagem_L2xC2 = findViewById(R.id.imgMatriz_5x4_L2xC2);
-        imagem_L2xC3 = findViewById(R.id.imgMatriz_5x4_L2xC3);
-        imagem_L2xC4 = findViewById(R.id.imgMatriz_5x4_L2xC4);
+        imagem_L2xC1 = findViewById(R.id.imgMatriz_6x4_L2xC1);
+        imagem_L2xC2 = findViewById(R.id.imgMatriz_6x4_L2xC2);
+        imagem_L2xC3 = findViewById(R.id.imgMatriz_6x4_L2xC3);
+        imagem_L2xC4 = findViewById(R.id.imgMatriz_6x4_L2xC4);
 
-        imagem_L3xC1 = findViewById(R.id.imgMatriz_5x4_L3xC1);
-        imagem_L3xC2 = findViewById(R.id.imgMatriz_5x4_L3xC2);
-        imagem_L3xC3 = findViewById(R.id.imgMatriz_5x4_L3xC3);
-        imagem_L3xC4 = findViewById(R.id.imgMatriz_5x4_L3xC4);
+        imagem_L3xC1 = findViewById(R.id.imgMatriz_6x4_L3xC1);
+        imagem_L3xC2 = findViewById(R.id.imgMatriz_6x4_L3xC2);
+        imagem_L3xC3 = findViewById(R.id.imgMatriz_6x4_L3xC3);
+        imagem_L3xC4 = findViewById(R.id.imgMatriz_6x4_L3xC4);
 
-        imagem_L4xC1 = findViewById(R.id.imgMatriz_5x4_L4xC1);
-        imagem_L4xC2 = findViewById(R.id.imgMatriz_5x4_L4xC2);
-        imagem_L4xC3 = findViewById(R.id.imgMatriz_5x4_L4xC3);
-        imagem_L4xC4 = findViewById(R.id.imgMatriz_5x4_L4xC4);
+        imagem_L4xC1 = findViewById(R.id.imgMatriz_6x4_L4xC1);
+        imagem_L4xC2 = findViewById(R.id.imgMatriz_6x4_L4xC2);
+        imagem_L4xC3 = findViewById(R.id.imgMatriz_6x4_L4xC3);
+        imagem_L4xC4 = findViewById(R.id.imgMatriz_6x4_L4xC4);
 
-        imagem_L5xC1 = findViewById(R.id.imgMatriz_5x4_L5xC1);
-        imagem_L5xC2 = findViewById(R.id.imgMatriz_5x4_L5xC2);
-        imagem_L5xC3 = findViewById(R.id.imgMatriz_5x4_L5xC3);
-        imagem_L5xC4 = findViewById(R.id.imgMatriz_5x4_L5xC4);
+        imagem_L5xC1 = findViewById(R.id.imgMatriz_6x4_L5xC1);
+        imagem_L5xC2 = findViewById(R.id.imgMatriz_6x4_L5xC2);
+        imagem_L5xC3 = findViewById(R.id.imgMatriz_6x4_L5xC3);
+        imagem_L5xC4 = findViewById(R.id.imgMatriz_6x4_L5xC4);
+
+        imagem_L6xC1 = findViewById(R.id.imgMatriz_6x4_L6xC1);
+        imagem_L6xC2 = findViewById(R.id.imgMatriz_6x4_L6xC2);
+        imagem_L6xC3 = findViewById(R.id.imgMatriz_6x4_L6xC3);
+        imagem_L6xC4 = findViewById(R.id.imgMatriz_6x4_L6xC4);
 
 
         //Comeca a contar o tempo com 30 segundos
-        contaTempo = 120;
+        contaTempo = 160;
 
         iniciarContagemTempo();
 
@@ -630,6 +708,11 @@ public class Jogo5x4_Activity extends AppCompatActivity {
         imagem_L5xC2.setTag("17");
         imagem_L5xC3.setTag("18");
         imagem_L5xC4.setTag("19");
+
+        imagem_L6xC1.setTag("20");
+        imagem_L6xC2.setTag("21");
+        imagem_L6xC3.setTag("22");
+        imagem_L6xC4.setTag("23");
 
 
         imagensParaOJogo();
@@ -662,6 +745,11 @@ public class Jogo5x4_Activity extends AppCompatActivity {
         imagem_L5xC3.setVisibility(View.VISIBLE);
         imagem_L5xC4.setVisibility(View.VISIBLE);
 
+        imagem_L6xC1.setVisibility(View.VISIBLE);
+        imagem_L6xC2.setVisibility(View.VISIBLE);
+        imagem_L6xC3.setVisibility(View.VISIBLE);
+        imagem_L6xC4.setVisibility(View.VISIBLE);
+
         //Muda todas as imagens para o padrao
         imagem_L1xC1.setImageResource(R.drawable.ic_close_preto_24);
         imagem_L1xC2.setImageResource(R.drawable.ic_close_preto_24);
@@ -688,6 +776,11 @@ public class Jogo5x4_Activity extends AppCompatActivity {
         imagem_L5xC3.setImageResource(R.drawable.ic_close_preto_24);
         imagem_L5xC4.setImageResource(R.drawable.ic_close_preto_24);
 
+        imagem_L6xC1.setImageResource(R.drawable.ic_close_preto_24);
+        imagem_L6xC2.setImageResource(R.drawable.ic_close_preto_24);
+        imagem_L6xC3.setImageResource(R.drawable.ic_close_preto_24);
+        imagem_L6xC4.setImageResource(R.drawable.ic_close_preto_24);
+
 
     }
 
@@ -703,17 +796,22 @@ public class Jogo5x4_Activity extends AppCompatActivity {
         imagemJogo8 = R.drawable.animal24;
         imagemJogo9 = R.drawable.animal10;
         imagemJogo10 = R.drawable.animal11;
+        imagemJogo11 = R.drawable.numero1;
+        imagemJogo12 = R.drawable.numero2;
 
-        imagemJogo11 = R.drawable.animal17;
-        imagemJogo12 = R.drawable.bomba;
-        imagemJogo13 = R.drawable.animal19;
-        imagemJogo14 = R.drawable.animal20;
-        imagemJogo15 = R.drawable.animal21;
-        imagemJogo16 = R.drawable.animal22;
-        imagemJogo17 = R.drawable.animal23;
-        imagemJogo18 = R.drawable.animal24;
-        imagemJogo19 = R.drawable.animal10;
-        imagemJogo20 = R.drawable.animal11;
+        imagemJogo13 = R.drawable.animal17;
+        imagemJogo14 = R.drawable.bomba;
+        imagemJogo15 = R.drawable.animal19;
+        imagemJogo16 = R.drawable.animal20;
+        imagemJogo17 = R.drawable.animal21;
+        imagemJogo18 = R.drawable.animal22;
+        imagemJogo19 = R.drawable.animal23;
+        imagemJogo20 = R.drawable.animal24;
+        imagemJogo21 = R.drawable.animal10;
+        imagemJogo22 = R.drawable.animal11;
+        imagemJogo23 = R.drawable.numero1;
+        imagemJogo24 = R.drawable.numero2;
+
 
     }
 
@@ -829,9 +927,31 @@ public class Jogo5x4_Activity extends AppCompatActivity {
             abriuDuasImagens10++;
 
 
-        }else  if(arrayPosicoesImg[posicao] == 201){
+        }else  if(arrayPosicoesImg[posicao] == 111){
 
             imagem.setImageResource(imagemJogo11);
+
+            //COmo nao é uma bomba eu zero a quantidade de cliques
+            cliquesBomba = 0;
+
+            //Atribuiu um clique na imagem
+            abriuDuasImagens11++;
+
+
+        }else  if(arrayPosicoesImg[posicao] == 112){
+
+            imagem.setImageResource(imagemJogo12);
+
+            //COmo nao é uma bomba eu zero a quantidade de cliques
+            cliquesBomba = 0;
+
+            //Atribuiu um clique na imagem
+            abriuDuasImagens12++;
+
+
+        }else  if(arrayPosicoesImg[posicao] == 201){
+
+            imagem.setImageResource(imagemJogo13);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -842,7 +962,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 202){
 
-            imagem.setImageResource(imagemJogo12);
+            imagem.setImageResource(imagemJogo14);
 
 
             //COmo é uma bomba eu acrescento mais um cliques
@@ -859,7 +979,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 203){
 
-            imagem.setImageResource(imagemJogo13);
+            imagem.setImageResource(imagemJogo15);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -870,7 +990,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 204){
 
-            imagem.setImageResource(imagemJogo14);
+            imagem.setImageResource(imagemJogo16);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -881,7 +1001,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 205){
 
-            imagem.setImageResource(imagemJogo15);
+            imagem.setImageResource(imagemJogo17);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -892,7 +1012,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 206){
 
-            imagem.setImageResource(imagemJogo16);
+            imagem.setImageResource(imagemJogo18);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -903,7 +1023,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 207){
 
-            imagem.setImageResource(imagemJogo17);
+            imagem.setImageResource(imagemJogo19);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -914,7 +1034,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 208){
 
-            imagem.setImageResource(imagemJogo18);
+            imagem.setImageResource(imagemJogo20);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -925,7 +1045,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 209){
 
-            imagem.setImageResource(imagemJogo19);
+            imagem.setImageResource(imagemJogo21);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -936,7 +1056,7 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
         }else  if(arrayPosicoesImg[posicao] == 210){
 
-            imagem.setImageResource(imagemJogo20);
+            imagem.setImageResource(imagemJogo22);
 
 
             //COmo nao é uma bomba eu zero a quantidade de cliques
@@ -944,6 +1064,28 @@ public class Jogo5x4_Activity extends AppCompatActivity {
 
             //Atribuiu um clique na imagem
             abriuDuasImagens10++;
+
+        }else  if(arrayPosicoesImg[posicao] == 211){
+
+            imagem.setImageResource(imagemJogo23);
+
+
+            //COmo nao é uma bomba eu zero a quantidade de cliques
+            cliquesBomba = 0;
+
+            //Atribuiu um clique na imagem
+            abriuDuasImagens11++;
+
+        }else  if(arrayPosicoesImg[posicao] == 212){
+
+            imagem.setImageResource(imagemJogo24);
+
+
+            //COmo nao é uma bomba eu zero a quantidade de cliques
+            cliquesBomba = 0;
+
+            //Atribuiu um clique na imagem
+            abriuDuasImagens12++;
 
         }
 
@@ -1018,6 +1160,11 @@ public class Jogo5x4_Activity extends AppCompatActivity {
             imagem_L5xC3.setEnabled(false);
             imagem_L5xC4.setEnabled(false);
 
+            imagem_L6xC1.setEnabled(false);
+            imagem_L6xC2.setEnabled(false);
+            imagem_L6xC3.setEnabled(false);
+            imagem_L6xC4.setEnabled(false);
+
             //Depois que clicar nas duas imagens, trava o clique por um segundo
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -1078,6 +1225,14 @@ public class Jogo5x4_Activity extends AppCompatActivity {
                 imagem_L5xC3.setVisibility(View.INVISIBLE);
             }else if(cliqueImagem1 == 19){
                 imagem_L5xC4.setVisibility(View.INVISIBLE);
+            }else if(cliqueImagem1 == 20){
+                imagem_L6xC1.setVisibility(View.INVISIBLE);
+            }else if(cliqueImagem1 == 21){
+                imagem_L6xC2.setVisibility(View.INVISIBLE);
+            }else if(cliqueImagem1 == 22){
+                imagem_L6xC3.setVisibility(View.INVISIBLE);
+            }else if(cliqueImagem1 == 23){
+                imagem_L6xC4.setVisibility(View.INVISIBLE);
             }
 
             if(cliqueImagem2 == 0){
@@ -1120,6 +1275,14 @@ public class Jogo5x4_Activity extends AppCompatActivity {
                 imagem_L5xC3.setVisibility(View.INVISIBLE);
             }else if(cliqueImagem2 == 19){
                 imagem_L5xC4.setVisibility(View.INVISIBLE);
+            }else if(cliqueImagem2 == 20){
+                imagem_L6xC1.setVisibility(View.INVISIBLE);
+            }else if(cliqueImagem2 == 21){
+                imagem_L6xC2.setVisibility(View.INVISIBLE);
+            }else if(cliqueImagem2 == 22){
+                imagem_L6xC3.setVisibility(View.INVISIBLE);
+            }else if(cliqueImagem2 == 23){
+                imagem_L6xC4.setVisibility(View.INVISIBLE);
             }
 
             pontos++;
@@ -1157,6 +1320,11 @@ public class Jogo5x4_Activity extends AppCompatActivity {
             imagem_L5xC3.setImageResource(R.drawable.ic_close_preto_24);
             imagem_L5xC4.setImageResource(R.drawable.ic_close_preto_24);
 
+            imagem_L6xC1.setImageResource(R.drawable.ic_close_preto_24);
+            imagem_L6xC2.setImageResource(R.drawable.ic_close_preto_24);
+            imagem_L6xC3.setImageResource(R.drawable.ic_close_preto_24);
+            imagem_L6xC4.setImageResource(R.drawable.ic_close_preto_24);
+
         }
 
 
@@ -1185,6 +1353,11 @@ public class Jogo5x4_Activity extends AppCompatActivity {
         imagem_L5xC2.setEnabled(true);
         imagem_L5xC3.setEnabled(true);
         imagem_L5xC4.setEnabled(true);
+
+        imagem_L6xC1.setEnabled(true);
+        imagem_L6xC2.setEnabled(true);
+        imagem_L6xC3.setEnabled(true);
+        imagem_L6xC4.setEnabled(true);
 
         //Verifica se o jogo terminou
         verificaSeTerminouJogo();
@@ -1254,6 +1427,20 @@ public class Jogo5x4_Activity extends AppCompatActivity {
             abriuDuasImagens10 = 0;
         }
 
+        if (abriuDuasImagens11 == 2){
+
+        }else {
+            abriuDuasImagens11 = 0;
+        }
+
+        if (abriuDuasImagens12 == 2){
+
+        }else {
+            abriuDuasImagens12 = 0;
+        }
+
+
+
         cliquesBomba = 0;
 
     }
@@ -1266,7 +1453,8 @@ public class Jogo5x4_Activity extends AppCompatActivity {
                 abriuDuasImagens3 == 2 &&abriuDuasImagens4 == 2 &&
                 abriuDuasImagens5 == 2 && abriuDuasImagens6 == 2 &&
                 abriuDuasImagens7 == 2 && abriuDuasImagens8 == 2 &&
-                abriuDuasImagens9 == 2 && abriuDuasImagens10 == 2){
+                abriuDuasImagens9 == 2 && abriuDuasImagens10 == 2 &&
+                abriuDuasImagens11 == 2 && abriuDuasImagens12 == 2){
 
             //Zerar o contator de tempo
             contaTempo = 0;
